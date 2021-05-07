@@ -1,0 +1,22 @@
+h1{
+  text-align: center;
+  font-family: "Arial Black";
+  font-weight: bold;
+}
+#mainCard{
+  height: 30%;
+  position: center;
+}
+
+label{
+  color: black;
+font-weight: bold;
+}
+#addCard {
+  background-color: powderblue;
+  border: black;
+}
+.card{
+  height: 10%;
+  width: 67%;
+}

@@ -1,0 +1,90 @@
+<h1 class="text-center font-weight-bold">QUIZ</h1>
+<div class="card  m-auto " id="mainCard">
+  <div class="card-header" style="background-color: powderblue"><h4 CLASS=" font-italic text-center">Question</h4>
+    <label>Reference Quiz</label>
+    <select  id="quiz-ref" (change)="quizSelected()"  class="form-control col-md-2" name="QuizRef" [(ngModel)]="question.quiz.ref" >
+      <option  *ngFor="let tq of quizs" value="{{tq.ref}}" ngDefaultControl >{{tq.ref}}</option>
+    </select>
+  </div>
+  <div class="card-body">
+    <div class="row" *ngFor="let q of questions">
+    <div class="card  m-auto"   id="cardbody">
+        <div class="card-body " id="addCard"  >
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <input type="number" class="form-control" ngDefaultControl placeholder="Numero Question" [(ngModel)]="question.numero">
+              </div> <div class="col-md-6">
+            <select  id="type-question" (change)="choixSelected()"  class="form-control" name="TypeDeQuestion" [(ngModel)]="question.typeDeQuestion.lib" >
+              <option  *ngFor="let tp of types" value="{{tp.lib}}" ngDefaultControl [selected]="tp.lib" >{{tp.lib}}</option></select>
+              </div>
+            </div>
+            <br/>
+              <div class="form-group">
+         <textarea [(ngModel)]="question.libelle" class="form-control  m-auto" rows="2" placeholder="Question" ></textarea></div>
+
+              <h4>Reponse</h4>
+              <div class="row">
+                <div class="col-md-9">
+                 <textarea class=" m-auto form-control "  rows="1" placeholder="Reponse" [(ngModel)]="reponse.lib"></textarea>
+</div>
+                <div class="col-md-3">
+                  <input type="number" class="form-control" [(ngModel)]="question.pointReponseJuste" placeholder="point">
+                </div>
+                </div>
+
+
+              <div class="row m-lg-4">
+                <label class="m-auto">Correct : </label>
+                <form>
+                  <div  class="form-check form-check-inline">
+                    <input class="form-check-input "  type="radio" id="vrai" name="etat"  (change)="checked($event)"  [(ngModel)]="reponse.etatReponse">
+                    <label class="form-check-label ">Vrai</label></div>
+                  <div  class="form-check form-check-inline">
+                    <input class="form-check-input "  type="radio"value="faux" id="faux" name="etat"  (change)="checkedFalse($event)" [(ngModel)]="reponse.etatReponse">
+                    <label class="form-check-label ">Faux</label></div>
+                </form>
+                <div class="col-md-4 ">
+                  <button class="btn btn-primary float-right col-md-4  fa fa-plus-circle "   (click)="addReponse()"></button>
+                </div>
+              </div>
+
+          <div class="card m-auto"  id="tableRep" style="display: none">
+            <div class="card-header"></div>
+            <div class="card-body" >
+              <table class="table table-striped table-hover">
+                <thead>
+                <th>Libelle Reponse</th>
+                <th>Correct</th>
+                <th>Action</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let q of reponses; index as i">
+                  <td>{{q.lib}}</td>
+                  <td>{{q.etatReponse}}</td>
+                  <td><span (click)="delete(i)"><i class="fa fa-trash btn btn-danger"></i></span></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </div>
+        </div>
+      <br/>
+  </div>
+      <div class="card col-2 m-auto" >
+        <div class="card-body " >
+          <div class="row">
+          <button class="btn btn-outline-dark fa fa-plus " style="background-color: powderblue" (click)="addFormule()"></button>
+          <button class="btn fa fa-trash btn-outline-dark m-auto" (click)="deleteCard(1)"></button>
+            </div>
+          </div>
+      </div>
+    </div>
+    </div>
+  <div class="card-footer text-center" style="background-color: powderblue">
+    <button class="btn btn-dark col-md-4 m-auto "  (click)="save()">Save</button>
+  </div>
+</div>
+
+
